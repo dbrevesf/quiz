@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h2>Create Your Quiz</h2>
+
+  <form
+    action="{% url 'quizcreator:create' %}"
+    class="form-hotizontal"
+    method="POST"
+  >
+    {% csrf_token %} {% with ''|center:quantity as range %} {% for _ in range %}
+    {% for field in question_form %}
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    </div>
+    {% endfor %} <br />{% endfor %} {%endwith %}
+    <br />
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <button class="btn btn-primary" type="submit">Next Step</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

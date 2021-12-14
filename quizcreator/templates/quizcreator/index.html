@@ -1,0 +1,9 @@
+{% if quiz_list %}
+<ul>
+  {% for quiz in quiz_list %}
+  <li><a href="/quiz/{{ quiz.id }}/">{{ quiz.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No Quiz are available.</p>
+{% endif %} To create a new Quiz, click here!

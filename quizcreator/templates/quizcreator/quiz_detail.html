@@ -1,1 +1,5 @@
-{% if quiz %} {{ quiz.name }} {% endif %}
+{{ quiz.name }} 
+{% for question in questions %} 
+{{ question.content }} - {{ queston.time_to_expire }}
+
+{% endfor %}

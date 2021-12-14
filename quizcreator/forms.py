@@ -6,6 +6,7 @@ class QuizForm(forms.ModelForm):
         model = Quiz
         fields = ['name']
 
+
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question

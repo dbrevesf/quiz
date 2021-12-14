@@ -6,14 +6,13 @@
     class="form-hotizontal"
     method="POST"
   >
-    <label for="fname">Quiz:</label>
     <input
-      type="text"
+      type="hidden"
       id="quiz_id"
       name="quiz_id"
       readonly="readonly"
       value="{{ quiz_id }}"
-    /><br /><br />
+    />
     {% if quantity %} {% csrf_token %} {% with ''|center:quantity as range %}
     {%for _ in range %} {% for field in question_form %}
     <div class="form-group row">

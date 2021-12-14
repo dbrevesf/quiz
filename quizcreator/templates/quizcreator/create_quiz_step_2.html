@@ -2,12 +2,20 @@
   <h2>Create Your Quiz</h2>
 
   <form
-    action="{% url 'quizcreator:create' %}"
+    action="{% url 'quizcreator:create_quiz_step_2' %}"
     class="form-hotizontal"
     method="POST"
   >
-    {% csrf_token %} {% with ''|center:quantity as range %} {% for _ in range %}
-    {% for field in question_form %}
+    <label for="fname">Quiz:</label>
+    <input
+      type="text"
+      id="quiz_id"
+      name="quiz_id"
+      readonly="readonly"
+      value="{{ quiz_id }}"
+    /><br /><br />
+    {% if quantity %} {% csrf_token %} {% with ''|center:quantity as range %}
+    {%for _ in range %} {% for field in question_form %}
     <div class="form-group row">
       <div class="col-sm-6">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -26,4 +34,5 @@
       </div>
     </div>
   </form>
+  {% endif %}
 </div>

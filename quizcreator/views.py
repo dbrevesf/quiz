@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
-
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from quizcreator.forms import QuestionForm, QuizForm
 from .models import Quiz
 
@@ -29,7 +30,20 @@ def create_quiz(request):
     return render(request, 'quizcreator/create_quiz.html', context)
 
 
-def create_quiz_step_2(request, context):
+def create_quiz_step_2(request, context=None):
+    print(request.POST)
+    quiz = None
+    if context == None:
+        context = {}
+    if 'content' and 'time_to_expire' in request.POST:
+        contents = request.POST['content']
+        times = request.POST['time_to_expire']
+        quiz = Quiz.objects.filter(id=request.POST['quiz_id'])[0]
+        for content, expire in zip(contents, times):
+            quiz.question_set.create(content=content, time_to_expire=expire)
+            quiz.save()
+        return HttpResponseRedirect('/')
+
 
     context['question_form'] = QuestionForm(request.POST or None)
     return render(request, 'quizcreator/create_quiz_step_2.html', context)

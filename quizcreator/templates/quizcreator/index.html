@@ -1,9 +1,12 @@
 {% if quiz_list %}
 <ul>
   {% for quiz in quiz_list %}
-  <li><a href="/quiz/{{ quiz.id }}/">{{ quiz.name }}</a></li>
+  <li><a href={% url 'quizcreator:detail' quiz.id %}>{{ quiz.name }}</a></li>
   {% endfor %}
 </ul>
 {% else %}
 <p>No Quiz are available.</p>
-{% endif %} To create a new Quiz, click here!
+{% endif %} 
+
+<a href={% url 'quizcreator:create' %}>To create a new Quiz, click here!</a>
+
